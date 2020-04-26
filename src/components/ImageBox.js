@@ -17,9 +17,12 @@ class ImageBox extends React.Component{
         console.log(this.props.width, this.props.height)
 
         return(
-            <div className='image-box' style={{width: this.props.width + 'px', height: this.props.height + 'px', transition: 'all 500ms ease'}}>
-                <img src={this.props.currentImage}/>
+            <div className='image-padding'>
+                <div className='image-box' style={{width: this.props.width + 'px', height: this.props.height + 'px', transition: 'all 500ms ease'}}>
+                    <img src={this.props.currentImage}/>
+                </div>
             </div>
+
         )
     }
 }

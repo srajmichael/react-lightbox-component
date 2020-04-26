@@ -45,27 +45,30 @@ class Lightbox extends React.Component{
         const windowH = parseFloat(window.innerHeight);
         const windowW = parseFloat(window.innerWidth);
         const paddingAllowancePerSide = 40;
-        let useHeight = true;
 
-        if( (windowW/windowH) < (w/h) ){
-            useHeight = false;
-        }
+        const windowRatio = windowW / windowH;
+        const imageRatio = w/h;
+        let newH = 0;
+        let newW = 0;
 
-        if(useHeight){
-            let newH = windowH - (paddingAllowancePerSide * 2);
-            let newW = (windowW/windowH) * newH;
-            this.setState(()=>({imageWidth: newW, imageHeight: newH}));
+        if(windowRatio > imageRatio){
+            newH = windowH - (paddingAllowancePerSide * 2);
+            newW = newH * imageRatio;
         }else{
-            let newW = windowW - (paddingAllowancePerSide * 2);
-            let newH = (windowH/windowW) * newW;
-            this.setState(()=>({imageWidth: newW, imageHeight: newH}));
+            newW = windowW - (paddingAllowancePerSide * 2);
+            newH = newW * (1/imageRatio);
         }
+        if(h < newH || w < newW){
+                newH = h;
+                newW = w;
+        }
+        this.setState(()=>({imageWidth: newW, imageHeight: newH}));
     }
 
 
     render(){
         return (
-        <div>
+        <div className='lightbox'>
             <ImageBox 
             currentImage={this.state.currentImage}
             width={this.state.imageWidth}

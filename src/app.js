@@ -31,6 +31,14 @@ const jsx = (
         <Lightbox 
         currentImage='./images/darth.png'
         toggleOpen={toggleOpen}
+        stylesList={{
+            overlay:{
+
+            },
+            imagePadding:{
+
+            }
+        }}
         />
         <div className='gallery'>
             <img src='./images/darth.png'/>
