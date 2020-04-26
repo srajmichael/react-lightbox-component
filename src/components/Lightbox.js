@@ -9,6 +9,8 @@ class Lightbox extends React.Component{
         this.state = {
             isOpen: false,
             currentImage: props.currentImage,
+            imageWidth: 0,
+            imageHeight: 0
         }
         this.handleOpenToggle = props.toggleOpen;
     }
@@ -23,14 +25,41 @@ class Lightbox extends React.Component{
                 this.setState(()=>({isOpen: newOpenState}))
             },
             (src)=>{
-
+                this.handleImageChange(src)
                 this.setState(()=>({currentImage: src}))
             }
             )
     }
 
-    getWidthAndHeight(src){
-        
+    handleImageChange(src){
+        const img = new Image();
+        img.onload = () =>{
+            const w = img.width;
+            const h = img.height;
+            this.setWidthAndHeight(w,h);
+        }
+        img.src = src;
+    }
+
+    setWidthAndHeight(w,h){
+        const windowH = parseFloat(window.innerHeight);
+        const windowW = parseFloat(window.innerWidth);
+        const paddingAllowancePerSide = 40;
+        let useHeight = true;
+
+        if( (windowW/windowH) < (w/h) ){
+            useHeight = false;
+        }
+
+        if(useHeight){
+            let newH = windowH - (paddingAllowancePerSide * 2);
+            let newW = (windowW/windowH) * newH;
+            this.setState(()=>({imageWidth: newW, imageHeight: newH}));
+        }else{
+            let newW = windowW - (paddingAllowancePerSide * 2);
+            let newH = (windowH/windowW) * newW;
+            this.setState(()=>({imageWidth: newW, imageHeight: newH}));
+        }
     }
 
 
@@ -39,8 +68,8 @@ class Lightbox extends React.Component{
         <div>
             <ImageBox 
             currentImage={this.state.currentImage}
-            width={}
-            height={}
+            width={this.state.imageWidth}
+            height={this.state.imageHeight}
             />
         </div>
         ) 

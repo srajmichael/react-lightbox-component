@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Lightbox from './components/Lightbox';
+import './styles/styles.css';
 
 
 
@@ -28,9 +29,14 @@ const toggleOpen = (getCurrentlyOpen, setCurrentlyOpen, changeImageTo) => {
 const jsx = (
     <div>
         <Lightbox 
-        currentImage='http://michaelsraj.com/ciurla/images/darth.png'
+        currentImage='./images/darth.png'
         toggleOpen={toggleOpen}
         />
+        <div className='gallery'>
+            <img src='./images/darth.png'/>
+            <img src='./images/vertical.jpg'/>
+        </div>
+
     </div>  
 );
 
