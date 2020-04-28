@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Lightbox from './components/Lightbox';
-import './styles/styles.css';
-
 
 
 const toggleOpen = (getCurrentlyOpen, setCurrentlyOpen, changeImageTo) => {
@@ -32,13 +30,9 @@ const jsx = (
         currentImage='./images/darth.png'
         toggleOpen={toggleOpen}
         stylesList={{
-            overlay:{
 
-            },
-            imagePadding:{
-
-            }
         }}
+        timeOut={1000}
         />
         <div className='gallery'>
             <img src='./images/darth.png'/>
