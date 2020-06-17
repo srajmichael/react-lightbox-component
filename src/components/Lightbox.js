@@ -132,7 +132,7 @@ class Lightbox extends React.Component{
             imagePaddingStyles={this.imagePaddingStyles}
             opacity={this.state.imgOpacity}
             transitionSpeed={this.state.timeOut}
-            transitionOrigin={this.state.timeOutOrigin}
+            transitionOriginSpeed={this.state.timeOutOrigin}
             />
         </div>
         ) 
